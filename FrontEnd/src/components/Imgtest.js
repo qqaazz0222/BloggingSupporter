@@ -1,49 +1,38 @@
 import React, { useState } from "react";
 
 function Imgtest() {
-    const [data, setData] = useState({
-        img: "",
-    });
+    const [img, setImg] = useState(null);
     const [returnedImg, setReturnedImg] = useState({
         img: "아직 서버로 부터 받은 이미지가 없습니다.",
         state: "empty_img",
     });
 
-    function submit(e) {
+    function submitimg(e) {
         e.preventDefault();
-        fetch("http://127.0.0.1:5000/send", {
+        fetch("http://localhost:3001/sendimg", {
             method: "POST",
-            headers: {
-                "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-                img: data.img,
-            }),
         })
             .then((response) => response.json())
             .then((response) => {
-                console.log(response);
                 setReturnedImg(response);
-                setData({ img: "" });
+                setImg(null);
             });
     }
 
-    function handle(e) {
-        const newdata = { ...data };
-        newdata[e.target.id] = e.target.value;
-        setData(newdata);
-        console.log(newdata);
+    function handleimg(e) {
+        setImg(e.target.files[0]);
     }
     return (
         <div className="imgtest">
             <h1>이미지 테스트 컴포넌트</h1>
             <p>서버에 메세지 보내기</p>
-            <form onSubmit={(e) => submit(e)}>
+            <form onSubmit={(e) => submitimg(e)}>
                 <input
-                    onChange={(e) => handle(e)}
+                    onChange={(e) => handleimg(e)}
                     id="img"
-                    value={data.Img}
-                    type="text"
+                    value={img.img}
+                    type="file"
+                    accept="image/*"
                     placeholder="서버로 전송할 이미지를 입력하세요..."
                 ></input>
                 <button>전송</button>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function Msgtest() {
-    const [data, setData] = useState({
+    const [msg, setMsg] = useState({
         msg: "",
     });
     const [returnedmsg, setReturnedmsg] = useState({
@@ -9,21 +9,21 @@ function Msgtest() {
         state: "empty_msg",
     });
 
-    function submit(e) {
+    function submitmsg(e) {
         e.preventDefault();
-        fetch("http://localhost:3001/send", {
+        fetch("http://localhost:3001/sendmsg", {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
             },
             body: JSON.stringify({
-                msg: data.msg,
+                msg: msg.msg,
             }),
         })
             .then((response) => response.json())
             .then((response) => {
                 setReturnedmsg(response);
-                setData({ msg: "" });
+                setMsg({ msg: "" });
             })
             .catch((err) => {
                 setReturnedmsg({
@@ -33,20 +33,20 @@ function Msgtest() {
             });
     }
 
-    function handle(e) {
-        const newdata = { ...data };
+    function handlemsg(e) {
+        const newdata = { ...msg };
         newdata[e.target.id] = e.target.value;
-        setData(newdata);
+        setMsg(newdata);
     }
     return (
         <div className="msgtest">
             <h1>메시지 테스트 컴포넌트</h1>
             <p>서버에 메세지 보내기</p>
-            <form onSubmit={(e) => submit(e)}>
+            <form onSubmit={(e) => submitmsg(e)}>
                 <input
-                    onChange={(e) => handle(e)}
+                    onChange={(e) => handlemsg(e)}
                     id="msg"
-                    value={data.msg}
+                    value={msg.msg}
                     type="text"
                     placeholder="서버로 전송할 메시지를 입력하세요..."
                 ></input>
