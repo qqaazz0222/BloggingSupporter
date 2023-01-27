@@ -1,13 +1,12 @@
 import "./App.css";
 import Msgtest from "./components/Msgtest";
-// import Imgtest from "./components/Imgtest";
-import Test from "./components/Test";
+import Imgtest from "./components/Imgtest";
 
 function App() {
     return (
         <div className="App">
             <Msgtest />
-            <Test />
+            <Imgtest />
         </div>
     );
 }
