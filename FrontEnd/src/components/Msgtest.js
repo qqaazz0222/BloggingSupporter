@@ -11,7 +11,7 @@ function Msgtest() {
 
     function submit(e) {
         e.preventDefault();
-        fetch("http://127.0.0.1:5000/send", {
+        fetch("http://localhost:3001/send", {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
@@ -22,9 +22,14 @@ function Msgtest() {
         })
             .then((response) => response.json())
             .then((response) => {
-                console.log(response);
                 setReturnedmsg(response);
                 setData({ msg: "" });
+            })
+            .catch((err) => {
+                setReturnedmsg({
+                    msg: "서버와 통신할 수 없습니다.",
+                    state: "error",
+                });
             });
     }
 
@@ -32,7 +37,6 @@ function Msgtest() {
         const newdata = { ...data };
         newdata[e.target.id] = e.target.value;
         setData(newdata);
-        console.log(newdata);
     }
     return (
         <div className="msgtest">
