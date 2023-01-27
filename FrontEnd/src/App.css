@@ -1,38 +1,105 @@
 .App {
-  text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background: #ffffff;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.msgtest {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    width: 480px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.msgtest>p {
+    margin-bottom: 8px;
+    font-weight: bold;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.msgtest>form {
+    display: flex;
+    flex-direction: row;
 }
 
-.App-link {
-  color: #61dafb;
+.msgtest>form>input {
+    flex: 1;
+    margin-right: 4px;
+    padding: 12px 20px;
+    outline: none;
+    border: 2px solid #E9EDEE;
+    border-radius: 12px;
+    font-size: medium;
+    transition: all .3s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.msgtest>form>input:focus {
+    border: 2px solid #1E41F8;
+}
+
+.msgtest>form>button {
+    padding: 12px 20px;
+    background: #1E41F8;
+    outline: none;
+    border: 2px solid #1E41F8;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.msgtest>.return {
+    padding: 12px 20px;
+    background: #E9EDEE;
+    border-radius: 12px;
+}
+
+.imgtest {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    width: 480px;
+}
+
+.imgtest>p {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.imgtest>form {
+    display: flex;
+    flex-direction: row;
+}
+
+.imgtest>form>input {
+    flex: 1;
+    margin-right: 4px;
+    padding: 12px 20px;
+    outline: none;
+    border: 2px solid #E9EDEE;
+    border-radius: 12px;
+    font-size: medium;
+    transition: all .3s;
+}
+
+.imgtest>form>input:focus {
+    border: 2px solid #1E41F8;
+}
+
+.imgtest>form>button {
+    padding: 12px 20px;
+    background: #1E41F8;
+    outline: none;
+    border: 2px solid #1E41F8;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.imgtest>.return {
+    padding: 12px 20px;
+    background: #E9EDEE;
+    border-radius: 12px;
 }

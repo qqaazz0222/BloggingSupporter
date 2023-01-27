@@ -22,7 +22,7 @@ def index():
 def post_text():
     params = request.get_json()
     print(params['msg'])
-    params['msg'] = "Msg From Server : " + params['msg']
+    params['msg'] = "'" + params['msg'] + "'를 받았습니다."
     params['state'] = "Good"
     return params
 
