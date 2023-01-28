@@ -103,3 +103,15 @@
     background: #E9EDEE;
     border-radius: 12px;
 }
+
+.imgtest>.return>.keyword {
+    font-size: small;
+}
+
+.imgtest>.return>.recommend {
+    padding: 12px 20px;
+    margin: 12px 0px;
+    background: #d9dDdE;
+    border-radius: 12px;
+    font-weight: bold;
+}

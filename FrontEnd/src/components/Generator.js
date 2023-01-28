@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function Imgtest() {
+function Generator() {
     const [img, setImg] = useState(null);
-    const [returnedimg, setReturnedimg] = useState({
+    const [returnedMsg, setReturnedMsg] = useState({
         msg: "아직 서버로부터 받은 키워드가 없습니다.",
         state: "empty_keyword",
         recommend: [],
@@ -16,14 +16,14 @@ function Imgtest() {
         formData.append("filename", img.name);
         axios.post("http://localhost:3001/sendimg", formData).then((res) => {
             console.log(res);
-            setReturnedimg(res.data);
+            setReturnedMsg(res.data);
         });
     }
 
     return (
         <div className="imgtest">
-            <h1>이미지 테스트 컴포넌트</h1>
-            <p>서버에 메세지 보내기</p>
+            <h1>문장 생성기</h1>
+            <p>이미지 업로드</p>
             <form onSubmit={(e) => submitimg(e)}>
                 <input
                     id="img"
@@ -36,17 +36,18 @@ function Imgtest() {
                 />
                 <button type="submit">전송</button>
             </form>
-            <p>서버 응답 메세지</p>
+            <p>추천 문장</p>
             <div className="return">
-                <p>{returnedimg.msg}</p>
-                <p>1. {returnedimg.recommend[1]}</p>
-                <p>2. {returnedimg.recommend[3]}</p>
-                <p>3. {returnedimg.recommend[5]}</p>
-                <p>4. {returnedimg.recommend[7]}</p>
-                <p>5. {returnedimg.recommend[9]}</p>
+                <p className="recommend">{returnedMsg.recommend}</p>
+                {/* <p className="recommend">{returnedMsg.recommend[0]}</p>
+                <p className="recommend">{returnedMsg.recommend[1]}</p>
+                <p className="recommend">{returnedMsg.recommend[2]}</p>
+                <p className="recommend">{returnedMsg.recommend[3]}</p>
+                <p className="recommend">{returnedMsg.recommend[4]}</p> */}
+                <p className="keyword">{returnedMsg.msg}</p>
             </div>
         </div>
     );
 }
 
-export default Imgtest;
+export default Generator;
