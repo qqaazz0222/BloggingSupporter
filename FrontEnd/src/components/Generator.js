@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Return from "./Return";
+import Loading from "./Loading";
 
 function Generator() {
     const [img, setImg] = useState(null);
@@ -8,23 +10,35 @@ function Generator() {
         state: "empty_keyword",
         recommend: [],
     });
+    const [visible, setVisible] = useState({
+        loading: false,
+        return: false,
+    });
 
-    function submitimg(e) {
+    function uploadImg(e) {
         e.preventDefault();
+        setVisible({
+            loading: true,
+            return: false,
+        });
         const formData = new FormData();
         formData.append("image", img);
         formData.append("filename", img.name);
         axios.post("http://localhost:3001/sendimg", formData).then((res) => {
             console.log(res);
             setReturnedMsg(res.data);
+            setVisible({
+                loading: false,
+                return: true,
+            });
         });
     }
 
     return (
-        <div className="imgtest">
-            <h1>문장 생성기</h1>
+        <div className="generator">
+            <h1>Blogging Supporter</h1>
             <p>이미지 업로드</p>
-            <form onSubmit={(e) => submitimg(e)}>
+            <form onSubmit={(e) => uploadImg(e)}>
                 <input
                     id="img"
                     type="file"
@@ -36,16 +50,9 @@ function Generator() {
                 />
                 <button type="submit">전송</button>
             </form>
-            <p>추천 문장</p>
-            <div className="return">
-                <p className="recommend">{returnedMsg.recommend}</p>
-                {/* <p className="recommend">{returnedMsg.recommend[0]}</p>
-                <p className="recommend">{returnedMsg.recommend[1]}</p>
-                <p className="recommend">{returnedMsg.recommend[2]}</p>
-                <p className="recommend">{returnedMsg.recommend[3]}</p>
-                <p className="recommend">{returnedMsg.recommend[4]}</p> */}
-                <p className="keyword">{returnedMsg.msg}</p>
-            </div>
+            {visible.return && <p>추천 문장</p>}
+            {visible.return && <Return returnedMsg={returnedMsg} />}
+            {visible.loading && <Loading />}
         </div>
     );
 }

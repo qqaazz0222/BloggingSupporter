@@ -14,13 +14,50 @@ client = vision.ImageAnnotatorClient()
 
 with io.open('./api-key.json', 'r') as f:
     keys = json.load(f)
-openai.api_key = keys["openai"]
 
-client_id = "Xa13p0zhdJGJ1lFVl0aU"
-client_secret = "nGkE4escvB"
+openai.api_key = keys["openai"]
+client_id = keys["papago_id"]
+client_secret = keys["papago_secret"]
 
 app = Flask(__name__)
 CORS(app)
+
+# 영어 한국어 번역 함수
+
+
+def translateEnToKo(enText):
+    translated_result_text = ""
+    text = urllib.parse.quote(enText)
+    target = "source=en&target=ko&text=" + text
+    url = "https://openapi.naver.com/v1/papago/n2mt"
+    translate_request = urllib.request.Request(url)
+    translate_request.add_header("X-Naver-Client-Id", client_id)
+    translate_request.add_header("X-Naver-Client-Secret", client_secret)
+    translate_response = urllib.request.urlopen(
+        translate_request, data=target.encode("utf-8"))
+    translate_rescode = translate_response.getcode()
+    if(translate_rescode == 200):
+        translate_response_body = translate_response.read()
+        translate_result = translate_response_body.decode('utf-8')
+        translated_result_json = json.loads(translate_result)
+        translated_result_text = translated_result_json["message"]["result"]["translatedText"]
+    else:
+        print("Error Code:" + translate_rescode)
+    return translated_result_text
+
+
+def textToArray(t):
+    temp = []
+    res = []
+    for i in range(1, 7):
+        print(i, ": t :", t)
+        temp = t.split(str(i)+". ")
+        print(temp)
+        if i < 6:
+            t = temp[1]
+        if i > 1:
+            res.append(temp[0])
+    return res
 
 
 @app.route('/')
@@ -93,29 +130,10 @@ def post_img():
             recommend += i
 
     # 파파고 번역부
-    translated_text = []
-    kocText = urllib.parse.quote(recommend)
-    data = "source=en&target=ko&text=" + kocText
-    url = "https://openapi.naver.com/v1/papago/n2mt"
-    translate_request = urllib.request.Request(url)
-    translate_request.add_header("X-Naver-Client-Id", client_id)
-    translate_request.add_header("X-Naver-Client-Secret", client_secret)
-    translate_response = urllib.request.urlopen(
-        translate_request, data=data.encode("utf-8"))
-    translate_rescode = translate_response.getcode()
-    if(translate_rescode == 200):
-        translate_response_body = translate_response.read()
-        translate_result = translate_response_body.decode('utf-8')
-        translated_texts = json.loads(translate_result)
-        translated_result_text = translated_texts["message"]["result"]["translatedText"].split(
-            ".")
-        for tt in translated_result_text:
-            if tt != "" or tt != " " or tt != "." or tt not in ["1", "2", "3", "4", "5"]:
-                translated_text.append(tt)
-    else:
-        print("Error Code:" + translate_rescode)
+    translated_result = translateEnToKo(recommend).split("\n")
+    # translated_text = textToArray(translated_result)
 
-    return {'msg': "키워드 : " + keyword, 'state': 200, 'recommend': translated_text}
+    return {'msg': "키워드 : " + keyword, 'state': 200, 'recommend': translated_result}
 
 
 if __name__ == '__main__':
