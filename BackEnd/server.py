@@ -22,10 +22,41 @@ client_secret = keys["papago_secret"]
 app = Flask(__name__)
 CORS(app)
 
-# 영어 한국어 번역 함수
+
+def requsetVisionApi(filename):
+    file_name = os.path.join(
+        os.path.dirname(__file__),
+        'images/' + filename)
+
+    with io.open(file_name, 'rb') as image_file:
+        content = image_file.read()
+
+    image = types.Image(content=content)
+
+    response = client.label_detection(image=image)
+    labels = response.label_annotations
+    return labels
 
 
-def translateEnToKo(enText):
+def requsetChatGPTApi(keyword):
+    gptresponse = openai.Completion.create(
+        model="text-davinci-003",
+        prompt="Please write 5 sentences for product review with the following keywords. keywrods : " + keyword,
+        temperature=0.7,
+        max_tokens=256,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0
+    )
+    text = gptresponse["choices"][0]["text"].split("\n")
+    recommend = ""
+    for i in text:
+        if i != "" and i != "\n":
+            recommend += i
+    return recommend
+
+
+def requestPapagoApi(enText):
     translated_result_text = ""
     text = urllib.parse.quote(enText)
     target = "source=en&target=ko&text=" + text
@@ -87,23 +118,14 @@ def post_img():
     # 이미지 수신부
     imgdata = request.files["image"]
     filename = request.form["filename"]
-    print(imgdata)
+    print("이미지 수신 완료, 파일명 : " + filename)
     imgdata.save("./images/" + filename)
+    print("이미지 저장 완료")
 
-    # vision api 요청부
-    file_name = os.path.join(
-        os.path.dirname(__file__),
-        'images/' + filename)
+    # vision api
+    labels = requsetVisionApi(filename)
+    print("Vision API, 라벨링 완료")
 
-    with io.open(file_name, 'rb') as image_file:
-        content = image_file.read()
-
-    image = types.Image(content=content)
-
-    response = client.label_detection(image=image)
-    labels = response.label_annotations
-
-    # 키워드 처리부
     keyword = ""
 
     for label in labels:
@@ -111,27 +133,15 @@ def post_img():
             keyword += label.description
         else:
             keyword = keyword + ", " + label.description
+    print("키워드 처리 완료")
 
-    # openai GPT api 요청부
-    gptresponse = openai.Completion.create(
-        model="text-davinci-003",
-        prompt="Please write 5 sentences for product review with the following keywords. keywrods : " + keyword,
-        temperature=0.7,
-        max_tokens=256,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0
-    )
-    print(gptresponse["choices"][0])
-    text = gptresponse["choices"][0]["text"].split("\n")
-    recommend = ""
-    for i in text:
-        if i != "" and i != "\n":
-            recommend += i
+    # openai GPT api
+    recommend = requsetChatGPTApi(keyword)
+    print("chatGPT API, 문장 생성 완료")
 
-    # 파파고 번역부
-    translated_result = translateEnToKo(recommend).split("\n")
-    # translated_text = textToArray(translated_result)
+    # papago translate api
+    translated_result = requestPapagoApi(recommend).split("\n")
+    print("papago API, 번역 완료")
 
     return {'msg': "키워드 : " + keyword, 'state': 200, 'recommend': translated_result}
 
