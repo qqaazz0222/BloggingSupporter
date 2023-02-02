@@ -15,6 +15,8 @@ function Generator() {
         return: false,
     });
 
+    const server_url = "13.209.185.52:52518";
+
     function uploadImg(e) {
         e.preventDefault();
         setVisible({
@@ -24,7 +26,7 @@ function Generator() {
         const formData = new FormData();
         formData.append("image", img);
         formData.append("filename", img.name);
-        axios.post("http://localhost:3001/sendimg", formData).then((res) => {
+        axios.post(server_url + "/sendImg", formData).then((res) => {
             console.log(res);
             setReturnedMsg(res.data);
             setVisible({
