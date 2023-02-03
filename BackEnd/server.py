@@ -1,6 +1,6 @@
 import flask
 from flask import *
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from werkzeug.utils import secure_filename
 import io
 import os
@@ -21,6 +21,7 @@ client_secret = keys["papago_secret"]
 
 app = Flask(__name__)
 CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 def requsetVisionApi(filename):
@@ -92,19 +93,16 @@ def textToArray(t):
 
 
 @app.route('/')
+@cross_origin()
 def index():
     html = '''
-        <div>
-            <form action="/send" method="post">
-                <input name="msg"/>
-                <button type="submit">전송</button>
-            </form>
-        </div>
+        <h1>access denied</h1>
     '''
     return html
 
 
 @app.route('/sendmsg', methods=['POST'])
+@cross_origin()
 def post_msg():
     msgdata = request.get_json()
     print("클라이언트로 부터의 메세지 : " + msgdata['msg'])
@@ -113,15 +111,15 @@ def post_msg():
     return msgdata
 
 
-@app.route('/sendimg', methods=['POST'])
-def post_img():
+@app.route('/upload', methods=['POST'])
+@cross_origin()
+def upload():
     # 이미지 수신부
     imgdata = request.files["image"]
     filename = request.form["filename"]
     print("이미지 수신 완료, 파일명 : " + filename)
     imgdata.save("./images/" + filename)
     print("이미지 저장 완료")
-
     # vision api
     labels = requsetVisionApi(filename)
     print("Vision API, 라벨링 완료")
@@ -144,6 +142,23 @@ def post_img():
     print("papago API, 번역 완료")
 
     return {'msg': "키워드 : " + keyword, 'state': 200, 'recommend': translated_result}
+
+
+@app.route('/test', methods=['POST'])
+@cross_origin()
+def test():
+    # 이미지 수신부
+    file_list = []
+    filename_list = []
+    for i in range(int(request.form["length"])):
+        file_list.append(request.files["file"+str(i)])
+        filename_list.append(request.files["file"+str(i)].filename)
+    print("이미지 수신 완료, 파일 수 : ",
+          request.form["length"], "파일명 : ", filename_list)
+    for i in range(len(file_list)):
+        file_list[i].save("./images/" + filename_list[i])
+    print("이미지 저장 완료")
+    return "done!"
 
 
 if __name__ == '__main__':

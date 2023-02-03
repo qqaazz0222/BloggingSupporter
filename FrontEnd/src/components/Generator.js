@@ -14,8 +14,7 @@ function Generator() {
         loading: false,
         return: false,
     });
-
-    const server_url = "13.209.185.52:52518";
+    const server_url = "http://127.0.0.1:3001";
 
     function uploadImg(e) {
         e.preventDefault();
@@ -26,7 +25,7 @@ function Generator() {
         const formData = new FormData();
         formData.append("image", img);
         formData.append("filename", img.name);
-        axios.post(server_url + "/sendImg", formData).then((res) => {
+        axios.post(server_url + "/upload", formData).then((res) => {
             console.log(res);
             setReturnedMsg(res.data);
             setVisible({
@@ -45,9 +44,8 @@ function Generator() {
                     id="img"
                     type="file"
                     accept="image/*"
-                    onChange={(event) => {
-                        console.log(event.target.files[0]);
-                        setImg(event.target.files[0]);
+                    onChange={(e) => {
+                        setImg(e.target.files[0]);
                     }}
                 />
                 <button type="submit">전송</button>
