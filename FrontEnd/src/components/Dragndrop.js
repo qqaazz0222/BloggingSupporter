@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 function Dragndrop() {
     const [files, setFiles] = useState(null);
+    const inputRef = useRef();
 
     const handleDragOver = (e) => {
         e.preventDefault();
@@ -10,7 +11,7 @@ function Dragndrop() {
     const handleDrop = (e) => {
         e.preventDefault();
         setFiles(e.dataTransfer.files);
-        console.log(files);
+        console.log(Array.from(e.dataTransfer.files));
     };
 
     return (
@@ -27,9 +28,19 @@ function Dragndrop() {
                     multiple
                     onChange={(e) => setFiles(e.target.files)}
                     hidden
+                    ref={inputRef}
                 />
-                <button>Select Files</button>
+                <button onClick={() => inputRef.current.click()}>
+                    Select Files
+                </button>
             </div>
+            {files && (
+                <ul>
+                    {Array.from(files).map((file, idx) => (
+                        <li key={idx}>{file.name}</li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 }
