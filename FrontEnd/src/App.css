@@ -194,3 +194,30 @@
     height: 200px;
     margin: auto;
 }
+
+.dragndrop {
+    margin: 20px;
+    width: 480px;
+}
+
+.dragndrop>.dropzone {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 360px;
+    width: 100%;
+    border: 2px solid #E9EDEE;
+    border-radius: 12px;
+}
+
+.dragndrop>.dropzone>button {
+    padding: 12px 20px;
+    background: #1E41F8;
+    outline: none;
+    border: 2px solid #1E41F8;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: medium;
+    font-weight: bold;
+}
