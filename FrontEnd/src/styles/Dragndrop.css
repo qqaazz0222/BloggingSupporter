@@ -1,0 +1,99 @@
+.dragndrop {
+    margin: 20px;
+}
+
+.dragndrop .dropzone {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+    width: 100%;
+    border: 2px dashed var(--g3);
+    border-radius: 12px;
+    color: var(--g3);
+    transition: all .3s;
+    overflow: hidden;
+}
+
+.dragndrop .dropzone>p {
+    margin-top: 20px;
+    margin-bottom: 12px;
+}
+
+.dragndrop .dropzone>button {
+    margin-bottom: 20px;
+    padding: 8px 12px;
+    background: var(--m1);
+    outline: none;
+    border: 2px solid var(--m1);
+    border-radius: 8px;
+    color: var(--g0);
+    font-size: small;
+    font-weight: bold;
+}
+
+.dragndrop ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.dragndrop ul>li {
+    list-style-type: none;
+    margin: 8px 0;
+    padding: 12px 20px;
+    background: var(--g1);
+    border-radius: 12px;
+    color: var(--g10);
+}
+
+.dragndrop button[type=submit] {
+    width: 100%;
+    padding: 12px 20px;
+    background: var(--m1);
+    outline: none;
+    border: 2px solid var(--m1);
+    border-radius: 12px;
+    color: var(--g0);
+    font-size: medium;
+    font-weight: bold;
+}
+
+.dragndrop .preview {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: fit-content;
+    overflow: scroll;
+}
+
+.dragndrop .preview>.item {
+    margin: 20px 8px 8px 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dragndrop .preview>.item>div {
+    display: flex;
+    flex-direction: row;
+}
+
+.dragndrop .preview>.item>.imgs>img {
+    margin: 4px;
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.dragndrop .preview>.item>.tags>span {
+    margin: 0px 4px;
+    width: 100px;
+    height: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: x-small;
+    color: var(--g10);
+    text-align: center;
+}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Return from "./Return";
 import Loading from "./Loading";
+import "../styles/Generator.css";
 
 function Generator() {
     const [img, setImg] = useState(null);
@@ -36,23 +37,24 @@ function Generator() {
     }
 
     return (
-        <div className="generator">
-            <h1>Blogging Supporter</h1>
-            <p>이미지 업로드</p>
-            <form onSubmit={(e) => uploadImg(e)}>
-                <input
-                    id="img"
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => {
-                        setImg(e.target.files[0]);
-                    }}
-                />
-                <button type="submit">전송</button>
-            </form>
-            {visible.return && <p>추천 문장</p>}
-            {visible.return && <Return returnedMsg={returnedMsg} />}
-            {visible.loading && <Loading />}
+        <div className="container">
+            <div className="generator">
+                <p>이미지 업로드</p>
+                <form onSubmit={(e) => uploadImg(e)}>
+                    <input
+                        id="img"
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                            setImg(e.target.files[0]);
+                        }}
+                    />
+                    <button type="submit">전송</button>
+                </form>
+                {visible.return && <p>추천 문장</p>}
+                {visible.return && <Return returnedMsg={returnedMsg} />}
+                {visible.loading && <Loading />}
+            </div>
         </div>
     );
 }

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
 import Image from "./Image";
+import "../styles/Dragndrop.css";
 
 function Dragndrop() {
     const [files, setFiles] = useState(null);
@@ -67,38 +68,40 @@ function Dragndrop() {
     }
 
     return (
-        <div className="dragndrop">
-            <form onSubmit={(e) => uploadFiles(e)}>
-                <div
-                    id="dropzone"
-                    className="dropzone"
-                    onDragOver={handleDragOver}
-                    onDragLeave={handleDragLeave}
-                    onDrop={handleDrop}
-                >
-                    <p>Drag & Drop Images Here</p>
-                    <input
-                        id="files"
-                        type="file"
-                        accept="image/*"
-                        multiple
-                        onChange={(e) => {
-                            handlePreview(e);
-                        }}
-                        hidden
-                        ref={inputRef}
-                    />
-                    <button onClick={() => inputRef.current.click()}>
-                        파일 선택
-                    </button>
-                    {files && (
-                        <div className="preview">
-                            <Image preview={preview} files={files} />
-                        </div>
-                    )}
-                </div>
-                <button type="submit">전송</button>
-            </form>
+        <div className="container">
+            <div className="dragndrop">
+                <form onSubmit={(e) => uploadFiles(e)}>
+                    <div
+                        id="dropzone"
+                        className="dropzone"
+                        onDragOver={handleDragOver}
+                        onDragLeave={handleDragLeave}
+                        onDrop={handleDrop}
+                    >
+                        <p>Drag & Drop Images Here</p>
+                        <input
+                            id="files"
+                            type="file"
+                            accept="image/*"
+                            multiple
+                            onChange={(e) => {
+                                handlePreview(e);
+                            }}
+                            hidden
+                            ref={inputRef}
+                        />
+                        <button onClick={() => inputRef.current.click()}>
+                            파일 선택
+                        </button>
+                        {files && (
+                            <div className="preview">
+                                <Image preview={preview} files={files} />
+                            </div>
+                        )}
+                    </div>
+                    <button type="submit">전송</button>
+                </form>
+            </div>
         </div>
     );
 }

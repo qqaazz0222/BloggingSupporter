@@ -1,0 +1,77 @@
+.generator {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.generator>p {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.generator>form {
+    display: flex;
+    flex-direction: row;
+}
+
+.generator>form>input {
+    flex: 1;
+    margin-right: 4px;
+    padding: 12px 20px;
+    outline: none;
+    border: 2px solid var(--g3);
+    border-radius: 12px;
+    font-size: medium;
+    transition: border .3s;
+}
+
+.generator>form>input:focus {
+    border: 2px solid var(--m1);
+}
+
+.generator>form>button {
+    padding: 12px 20px;
+    background: var(--m1);
+    outline: none;
+    border: 2px solid var(--m1);
+    border-radius: 12px;
+    color: var(--g0);
+    font-size: medium;
+    font-weight: bold;
+}
+
+.generator>.return {
+    padding: 8px 16px;
+    background: var(--g2);
+    border-radius: 12px;
+}
+
+.generator>.return>.keyword {
+    font-size: small;
+}
+
+.generator>.return>.recommend {
+    padding: 12px 20px;
+    margin: 12px 0px;
+    background: var(--g1);
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+.loading {
+    position: fixed;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 520px;
+    height: 100%;
+    background: #ffffffdd;
+}
+
+.loading>.lottie {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+}

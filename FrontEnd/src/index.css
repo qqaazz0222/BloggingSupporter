@@ -1,3 +1,28 @@
+:root {
+    --m0: #8BB8FF;
+    --m1: #418AFE;
+    --m2: #1359C5;
+    --g0: #ffffff;
+    --g1: #F1F5FC;
+    --g2: #EDEFF6;
+    --g3: #D6E1F4;
+    --g4: #E0E9F6;
+    --g5: #D2E0EE;
+    --g6: #B4C0CE;
+    --g7: #8695A8;
+    --g8: #535F72;
+    --g9: #373D49;
+    --g10: #24282C;
+    --max-width: 480px;
+    --container-border-radius: 12px;
+    --container-margin: 8px
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -5,7 +30,7 @@ body {
     width: 100vw;
     min-height: 100vh;
     height: 100%;
-    background: #F9FAFB;
+    background: var(--g1);
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
