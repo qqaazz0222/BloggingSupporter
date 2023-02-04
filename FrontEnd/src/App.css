@@ -7,8 +7,10 @@
 }
 
 .App>.content {
-    width: var(--web-width);
+    width: 100%;
+    max-width: var(--web-width);
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     align-items: flex-start;
 }
@@ -16,23 +18,28 @@
 .App>.content>div {
     display: flex;
     flex-direction: column;
-
+    margin: 8px 20px;
+    min-width: var(--min-width);
 }
 
 .App>.content>.func {
-    margin-right: 4px;
+    flex: 1;
 }
 
 .App>.content>.result {
-    flex: 1;
+    flex: 3;
 }
 
 .App>.content>.func>.container {
     width: 100%;
-    max-width: var(--max-width);
+    min-width: var(--min-width);
     background: var(--g0);
     border-radius: var(--container-border-radius);
-    margin: var(--container-margin);
+    margin-bottom: 16px;
+}
+
+.App>.content>.func>.container:last-child {
+    margin-bottom: 0;
 }
 
 
@@ -40,7 +47,6 @@
     width: 100%;
     background: var(--g0);
     border-radius: var(--container-border-radius);
-    margin: var(--container-margin);
 }
 
 .card {
