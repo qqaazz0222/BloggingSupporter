@@ -1,3 +1,16 @@
+@font-face {
+    font-family: 'logo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
 :root {
     --m0: #8BB8FF;
     --m1: #418AFE;
@@ -13,9 +26,10 @@
     --g8: #535F72;
     --g9: #373D49;
     --g10: #24282C;
-    --max-width: 480px;
+    --web-width: 1280px;
+    --max-width: 400px;
     --container-border-radius: 12px;
-    --container-margin: 8px
+    --container-margin: 8px;
 }
 
 * {
@@ -39,7 +53,18 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-        monospace;
+.btn {
+    margin: 2px;
+    padding: 8px 12px;
+    background: var(--m1);
+    border: 1px solid var(--m0);
+    border-radius: 8px;
+    color: var(--g0);
+    font-weight: bold;
+    box-shadow: 0px 2px 4px var(--g1);
+    transition: all .3s;
+}
+
+.btn:hover {
+    box-shadow: 0px 2px 8px var(--m0);
 }

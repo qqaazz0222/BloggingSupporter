@@ -1,10 +1,27 @@
 .navbar {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: center;
     margin-bottom: 20px;
     width: 100vw;
-    height: 64px;
     background: var(--g0);
 }
+
+.navbar>.list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 8px;
+    width: 100%;
+    height: 64px;
+    max-width: var(--web-width);
+}
+
+.navbar>.list>.logo {
+    font-family: logo;
+    font-size: x-large;
+}
+
+.navbar>.list>.link {}
+
+.navbar>.list>.user {}

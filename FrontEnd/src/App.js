@@ -14,7 +14,9 @@ function App() {
                 </div>
                 <div className="result">
                     <div className="container">
-                        <h1>123123</h1>
+                        <div className="card">
+                            <h1>결과 출력 창</h1>
+                        </div>
                     </div>
                 </div>
             </div>

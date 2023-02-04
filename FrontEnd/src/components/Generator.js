@@ -49,7 +49,9 @@ function Generator() {
                             setImg(e.target.files[0]);
                         }}
                     />
-                    <button type="submit">전송</button>
+                    <button className="btn" type="submit">
+                        전송
+                    </button>
                 </form>
                 {visible.return && <p>추천 문장</p>}
                 {visible.return && <Return returnedMsg={returnedMsg} />}

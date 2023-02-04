@@ -9,6 +9,7 @@
     align-items: center;
     margin-bottom: 12px;
     width: 100%;
+    min-height: 240px;
     border: 2px dashed var(--g3);
     border-radius: 12px;
     color: var(--g3);

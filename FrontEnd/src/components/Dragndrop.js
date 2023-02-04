@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import axios from "axios";
 import Image from "./Image";
 import "../styles/Dragndrop.css";
+import upload from "../assets/images/upload.png";
 
 function Dragndrop() {
     const [files, setFiles] = useState(null);
@@ -77,7 +78,9 @@ function Dragndrop() {
                         onDragOver={handleDragOver}
                         onDragLeave={handleDragLeave}
                         onDrop={handleDrop}
+                        onClick={() => inputRef.current.click()}
                     >
+                        <img src={upload} />
                         <p>Drag & Drop Images Here</p>
                         <input
                             id="files"
@@ -90,7 +93,10 @@ function Dragndrop() {
                             hidden
                             ref={inputRef}
                         />
-                        <button onClick={() => inputRef.current.click()}>
+                        <button
+                            className="btn"
+                            onClick={() => inputRef.current.click()}
+                        >
                             파일 선택
                         </button>
                         {files && (
@@ -99,7 +105,9 @@ function Dragndrop() {
                             </div>
                         )}
                     </div>
-                    <button type="submit">전송</button>
+                    <button className="btn" type="submit">
+                        전송
+                    </button>
                 </form>
             </div>
         </div>

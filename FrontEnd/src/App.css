@@ -3,11 +3,11 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .App>.content {
-    width: 100vw;
+    width: var(--web-width);
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -20,15 +20,35 @@
 }
 
 .App>.content>.func {
-    margin-right: 20px;
+    margin-right: 4px;
 }
 
 .App>.content>.result {
     flex: 1;
 }
 
+.App>.content>.func>.container {
+    width: 100%;
+    max-width: var(--max-width);
+    background: var(--g0);
+    border-radius: var(--container-border-radius);
+    margin: var(--container-margin);
+}
 
-.msgtest {
+
+.App>.content>.result>.container {
+    width: 100%;
+    background: var(--g0);
+    border-radius: var(--container-border-radius);
+    margin: var(--container-margin);
+}
+
+.card {
+    width: 100%;
+    height: 100vh;
+}
+
+/* .msgtest {
     display: flex;
     flex-direction: column;
     margin: 20px;
@@ -75,12 +95,4 @@
     padding: 12px 20px;
     background: #E9EDEE;
     border-radius: 12px;
-}
-
-.container {
-    width: 100%;
-    max-width: var(--max-width);
-    background: var(--g0);
-    border-radius: var(--container-border-radius);
-    margin: var(--container-margin);
-}
+} */
