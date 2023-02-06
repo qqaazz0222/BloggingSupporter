@@ -1,0 +1,14 @@
+.return {
+    padding: 8px 16px;
+}
+
+.return>.keyword {
+    font-size: small;
+}
+
+.return>.recommend {
+    padding: 12px 20px;
+    margin: 12px 0px;
+    background: var(--g1);
+    border-radius: 12px;
+}

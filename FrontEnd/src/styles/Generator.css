@@ -5,8 +5,10 @@
 }
 
 .generator>p {
-    margin-bottom: 8px;
+    color: var(--m2);
+    font-size: 14px;
     font-weight: bold;
+    margin-bottom: 8px;
 }
 
 .generator>form {
@@ -38,40 +40,4 @@
     color: var(--g0);
     font-size: medium;
     font-weight: bold;
-}
-
-.generator>.return {
-    padding: 8px 16px;
-    background: var(--g2);
-    border-radius: 12px;
-}
-
-.generator>.return>.keyword {
-    font-size: small;
-}
-
-.generator>.return>.recommend {
-    padding: 12px 20px;
-    margin: 12px 0px;
-    background: var(--g1);
-    border-radius: 12px;
-    font-weight: bold;
-}
-
-.loading {
-    position: fixed;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 520px;
-    height: 100%;
-    background: #ffffffdd;
-}
-
-.loading>.lottie {
-    width: 200px;
-    height: 200px;
-    margin: auto;
 }

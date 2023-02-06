@@ -20,6 +20,7 @@
 .dragndrop .dropzone>p {
     margin-top: 20px;
     margin-bottom: 12px;
+    color: var(--g6);
 }
 
 .dragndrop .dropzone>button {

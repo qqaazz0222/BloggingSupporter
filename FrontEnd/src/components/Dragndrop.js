@@ -4,11 +4,10 @@ import Image from "./Image";
 import "../styles/Dragndrop.css";
 import upload from "../assets/images/upload.png";
 
-function Dragndrop() {
+function Dragndrop(props) {
     const [files, setFiles] = useState(null);
     const [preview, setPreview] = useState([]);
     const inputRef = useRef();
-    const server_url = "http://127.0.0.1:3001";
 
     function handleDragOver(e) {
         e.preventDefault();
@@ -63,7 +62,7 @@ function Dragndrop() {
             formData.append("file" + String(i), files[i]);
         }
         formData.append("length", files.length);
-        axios.post(server_url + "/test", formData).then((res) => {
+        axios.post(props.server_url + "/test", formData).then((res) => {
             console.log(res);
         });
     }

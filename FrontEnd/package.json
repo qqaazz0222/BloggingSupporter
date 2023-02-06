@@ -2,7 +2,8 @@
     "name": "client",
     "version": "0.1.0",
     "private": true,
-    "proxy": "http://127.0.0.1:3001/",
+    
+    "proxy": "http://13.209.185.52:52518/",
     "dependencies": {
         "@lottiefiles/react-lottie-player": "^3.5.2",
         "@testing-library/jest-dom": "^5.16.5",

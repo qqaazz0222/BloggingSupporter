@@ -1,7 +1,7 @@
 .navbar {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     width: 100vw;
     background: var(--g0);
 }
@@ -18,8 +18,9 @@
 }
 
 .navbar>.list>.logo {
-    font-family: logo;
-    font-size: x-large;
+    color: var(--m2);
+    font-size: large;
+    font-weight: bold;
 }
 
 .navbar>.list>.link {}
