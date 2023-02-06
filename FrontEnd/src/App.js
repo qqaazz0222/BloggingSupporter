@@ -7,8 +7,8 @@ import Return from "./components/Return";
 import Loading from "./components/Loading";
 
 function App() {
-    // const server_url = "http://127.0.0.1:3001";
-    const server_url = "http://13.209.185.52:52518";
+    const server_url = "http://127.0.0.1:3001";
+    // const server_url = "http://13.209.185.52:52518";
     const [isLoading, setLoading] = useState(false);
     const [returnedMsg, setReturnedMsg] = useState({
         msg: "아직 서버로부터 받은 추천 문장이 없습니다.",
