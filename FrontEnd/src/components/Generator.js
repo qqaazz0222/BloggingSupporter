@@ -4,11 +4,6 @@ import "../styles/Generator.css";
 
 function Generator(props) {
     const [img, setImg] = useState(null);
-    const [returnedMsg, setReturnedMsg] = useState({
-        msg: "아직 서버로부터 받은 키워드가 없습니다.",
-        state: "empty_keyword",
-        recommend: [],
-    });
 
     function uploadImg(e) {
         e.preventDefault();
