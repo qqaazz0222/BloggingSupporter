@@ -36,7 +36,7 @@ for keyword in keywords[0]:
     print(keyword)
     quote = keyword
     encText = urllib.parse.quote(quote)
-    display_num = "50"  # 출력 수
+    display_num = urllib.parse.quote("50")  # 출력 수
     url = "https://openapi.naver.com/v1/search/blog?query=" + \
         encText + "&display="+display_num  # json 결과
     request = urllib.request.Request(url)
