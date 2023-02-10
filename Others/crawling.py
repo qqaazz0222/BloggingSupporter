@@ -20,9 +20,9 @@ keywords = ["노트북 구매후기", "노트북 구입리뷰", "노트북 한 �
             "키보드 실사용리뷰", "키보드 상세리뷰", "키보드 언박싱", "키보드 내돈내산리뷰", "키보드 구입기", "키보드 개봉기", "키보드 리얼리뷰", "키보드 개봉 후기", "키보드 장단점 리뷰", "키보드 디테일 후기", "키보드 솔직후기", "의자 구매후기", "의자 구입리뷰", "의자 한 달 사용후기", "의자 리뷰", "의자 실사용후기", "의자 실사용리뷰", "의자 상세리뷰", "의자 언박싱", "의자 내돈내산리뷰", "의자 구입기", "의자 개봉기", "의자 리얼리뷰", "의자 개봉 후기", "의자 장단점리뷰", "의자 디테일 후기", "의자 솔직후기", "카메라 구매후기", "카메라 구입리뷰", "카메라 한 달 사용후기", "카메라 리뷰", "카메라 실사용후기", "카메라 실사용리뷰", "카메라 상세리뷰", "카메라 언박싱", "카메라 내돈내산리뷰", "카메라 구입기", "카메라 개봉기", "카메라 리얼리뷰", "카메라 개봉 후기", "카메라 장단점리뷰", "카메라 디테일 후기", "카메라 솔직후기", "가방 구매후기", "가방 구입리뷰", "가방 한 달 사용후기", "가방 리뷰", "가방 실사용후기", "가방 실사용리뷰", "가방 상세리뷰", "가방 언박싱", "가방 내돈내산리뷰", "가방 구입기", "가방 개봉기", "가방 리얼리뷰", "가방 개봉 후기", "가방 장단점리뷰", "가방 디테일 후기", "가방 실착 리뷰", "가방 솔직후기", "가방 솔직 상세 후기", "가방 디자인 후기", "가방 솔직후기"]
 
 # mySql 서버 연결
-conn = pymysql.connect(host=server["host"], user=server["username"], passwd=server["password"],
-                       db=server["database"], port=server["port"], use_unicode=True, charset='utf8')
-cursor = conn.cursor()
+# conn = pymysql.connect(host=server["host"], user=server["username"], passwd=server["password"],
+#                        db=server["database"], port=server["port"], use_unicode=True, charset='utf8')
+# cursor = conn.cursor()
 
 # 웹드라이버 설정
 options = webdriver.ChromeOptions()
@@ -32,7 +32,7 @@ options.add_experimental_option("useAutomationExtension", False)
 # 정보입력
 client_id = keys["papago_id"]
 client_secret = keys["papago_secret"]
-for keyword in keywords:
+for keyword in keywords[0]:
     print(keyword)
     quote = keyword
     encText = urllib.parse.quote(quote)
@@ -68,12 +68,12 @@ for keyword in keywords:
         print(title, "\n", link, "\n", description, "\n", bloggername, "\n",
               bloggerlink, "\n", postdate, "\n---------------------------------------")
         # 쿼리문
-        query = "INSERT INTO link VALUES (null, '%s', '%s', '%s', '%s', '%s', '%s')" % (
-            title, link, description, bloggername, bloggerlink, postdate)
+        # query = "INSERT INTO link VALUES (null, '%s', '%s', '%s', '%s', '%s', '%s')" % (
+        #     title, link, description, bloggername, bloggerlink, postdate)
         # 쿼리문 실행
-        cursor.execute(query)
+        # cursor.execute(query)
         # 쿼리 실행 내역 커밋
-        conn.commit()
+        # conn.commit()
 
 # mySql 연결 종료
-conn.close()
+# conn.close()
